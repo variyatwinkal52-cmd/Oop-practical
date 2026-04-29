@@ -1,0 +1,31 @@
+public class rectengle {
+    double width = 1;
+    double height = 1;
+
+    public rectengle() {
+    }
+
+    public rectengle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public double getArea() {
+        return width * height;
+    }
+
+    public double getPerimeter() {
+        return 2 * (width + height);
+    }
+
+    public static void main(String[] args) {
+        rectengle r1 = new rectengle();
+        rectengle r2 = new rectengle(5, 3);
+
+        System.out.println("Rectangle 1 Area: " + r1.getArea());
+        System.out.println("Rectangle 1 Perimeter: " + r1.getPerimeter());
+
+        System.out.println("Rectangle 2 Area: " + r2.getArea());
+        System.out.println("Rectangle 2 Perimeter: " + r2.getPerimeter());
+    }
+}

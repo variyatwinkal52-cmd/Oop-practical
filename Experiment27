@@ -1,0 +1,56 @@
+import java.io.*;
+
+public class Experiment27 {
+    public static void main(String[] args) {
+
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+
+        try {
+            fw = new FileWriter("students.txt");
+            bw = new BufferedWriter(fw);
+
+            bw.write("101, Ravi, 85");
+            bw.newLine();
+            bw.write("102, Neha, 90");
+            bw.newLine();
+            bw.write("103, Amit, 78");
+            bw.newLine();
+
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+
+        } finally {
+            try {
+                if (bw != null) bw.close();
+                if (fw != null) fw.close();
+            } catch (IOException e) {
+                System.out.println("Error closing writer");
+            }
+        }
+
+        try {
+            fr = new FileReader("students.txt");
+            br = new BufferedReader(fr);
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+
+        } finally {
+            try {
+                if (br != null) br.close();
+                if (fr != null) fr.close();
+            } catch (IOException e) {
+                System.out.println("Error closing reader");
+            }
+        }
+    }
+}

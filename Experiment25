@@ -1,0 +1,46 @@
+class TablePrinter {
+    synchronized void printTable(int n) {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(Thread.currentThread().getName() + ": " + n + " x " + i + " = " + (n * i));
+        }
+    }
+}
+
+class ThreadA extends Thread {
+    TablePrinter t;
+
+    ThreadA(TablePrinter t) {
+        this.t = t;
+    }
+
+    public void run() {
+        t.printTable(5);
+    }
+}
+
+class ThreadB extends Thread {
+    TablePrinter t;
+
+    ThreadB(TablePrinter t) {
+        this.t = t;
+    }
+
+    public void run() {
+        t.printTable(7);
+    }
+}
+
+public class experiment25 {
+    public static void main(String[] args) {
+        TablePrinter t = new TablePrinter();
+
+        ThreadA t1 = new ThreadA(t);
+        ThreadB t2 = new ThreadB(t);
+
+        t1.setName("Table-5");
+        t2.setName("Table-7");
+
+        t1.start();
+        t2.start();
+    }
+}

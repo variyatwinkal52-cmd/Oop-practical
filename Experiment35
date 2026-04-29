@@ -1,0 +1,49 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+public class Experiment35 extends Application {
+
+    @Override
+    public void start(Stage stage) {
+
+        HBox hbox = new HBox(20);
+        hbox.setStyle("-fx-alignment: bottom-center;");
+
+        VBox projects = createBar("Projects - 20%", 100, Color.RED);
+        VBox quizzes = createBar("Quizzes - 10%", 50, Color.BLUE);
+        VBox midterm = createBar("Midterm - 30%", 150, Color.GREEN);
+        VBox finalExam = createBar("Final Exam - 40%", 200, Color.ORANGE);
+
+        hbox.getChildren().addAll(projects, quizzes, midterm, finalExam);
+
+        Scene scene = new Scene(hbox, 500, 300);
+
+        stage.setTitle("Grade Distribution Bar Chart");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private VBox createBar(String label, double height, Color color) {
+
+        Rectangle rect = new Rectangle(50, height);
+        rect.setFill(color);
+
+        Text text = new Text(label);
+
+        VBox vbox = new VBox(5);
+        vbox.getChildren().addAll(rect, text);
+        vbox.setStyle("-fx-alignment: bottom-center;");
+
+        return vbox;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}

@@ -1,0 +1,25 @@
+import java.util.LinkedList;
+
+public class Experiment31 {
+    public static void main(String[] args) {
+
+        LinkedList<String> playlist = new LinkedList<>();
+
+        playlist.add("Song A");
+        playlist.add("Song B");
+        playlist.add("Song C");
+        playlist.add("Song D");
+        playlist.add("Song E");
+
+        System.out.println("Full Playlist:");
+        System.out.println(playlist);
+
+        playlist.removeFirst();
+        System.out.println("After playing first song:");
+        System.out.println(playlist);
+
+        playlist.removeLast();
+        System.out.println("After skipping last song:");
+        System.out.println(playlist);
+    }
+}

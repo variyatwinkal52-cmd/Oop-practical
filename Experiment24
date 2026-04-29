@@ -1,0 +1,61 @@
+class PrintNumbers {
+    synchronized void printRange(int start, int end) {
+        for (int i = start; i <= end; i++) {
+            System.out.println(Thread.currentThread().getName() + ": " + i);
+        }
+    }
+}
+
+class ThreadA extends Thread {
+    PrintNumbers p;
+
+    ThreadA(PrintNumbers p) {
+        this.p = p;
+    }
+
+    public void run() {
+        p.printRange(1, 100);
+    }
+}
+
+class ThreadB extends Thread {
+    PrintNumbers p;
+
+    ThreadB(PrintNumbers p) {
+        this.p = p;
+    }
+
+    public void run() {
+        p.printRange(101, 200);
+    }
+}
+
+class ThreadC extends Thread {
+    PrintNumbers p;
+
+    ThreadC(PrintNumbers p) {
+        this.p = p;
+    }
+
+    public void run() {
+        p.printRange(201, 300);
+    }
+}
+
+public class experiment24 {
+    public static void main(String[] args) {
+        PrintNumbers p = new PrintNumbers();
+
+        ThreadA t1 = new ThreadA(p);
+        ThreadB t2 = new ThreadB(p);
+        ThreadC t3 = new ThreadC(p);
+
+        t1.setName("T1");
+        t2.setName("T2");
+        t3.setName("T3");
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
